@@ -1,5 +1,6 @@
 import argparse
 import collections
+import time
 
 
 def process(file_path):
@@ -23,6 +24,9 @@ def alphabetical(raw_text):
 
 
 if __name__ == '__main__':
+
+    start = time.time()
+
     parser = argparse.ArgumentParser(description='Print some book statistics')
     parser.add_argument('infile', type=str, help='Path to the input file')
     args = parser.parse_args()
@@ -31,7 +35,7 @@ if __name__ == '__main__':
     total_letters = len(text)
 
     char = dict(collections.Counter(text))
-    sorted_char=dict(sorted(char.items()))
+    sorted_char = dict(sorted(char.items()))
 
     freq = {}
     for elem in sorted_char:
@@ -40,3 +44,6 @@ if __name__ == '__main__':
     print('Letters frequencies:')
     for key in freq:
         print(key, '=', round(freq[key]*100, 2), '%')
+
+    end = time.time()
+    print('Measured elapsed time:', end-start, 's')
