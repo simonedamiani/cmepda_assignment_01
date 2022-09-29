@@ -1,13 +1,15 @@
+"""First assignment of CMEPDA Course, 2022/2023"""
+
 import argparse
 import collections
 import time
-import matplotlib.pyplot as plt
 import logging
+import matplotlib.pyplot as plt
 
 
 def process(file_path):
     """Open file located in 'file_path' and convert it to string"""
-    logging.info(f' Opening input file {file_path}...')
+    logging.info(' Opening input file %s...', file_path)
     with open(file_path, 'r') as input_file:
         book = input_file.read()
     logging.info(' Done.')
@@ -65,4 +67,4 @@ if __name__ == '__main__':
     end = time.time()
     time_ = round(end-start, 2)
 
-    logging.info(f' Measured elapsed time: {time_}sec')
+    logging.info(' Measured elapsed time: %s sec', time_)
