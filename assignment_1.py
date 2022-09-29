@@ -1,6 +1,7 @@
 import argparse
 import collections
 import time
+import matplotlib.pyplot as plt
 
 
 def process(file_path):
@@ -21,6 +22,11 @@ def alphabetical(raw_text):
             plain_text += all_char
     print('Done.')
     return plain_text
+
+
+def histogram(dict_):
+    plt.bar(list(dict_.keys()), dict_.values(), color='b')
+    plt.show()
 
 
 if __name__ == '__main__':
@@ -45,5 +51,12 @@ if __name__ == '__main__':
     for key in freq:
         print(key, '=', round(freq[key]*100, 2), '%')
 
+    print('Display a histogram to summarize the results?')
+    response = input('Input Y/N:').lower()
+    if response == 'y':
+        histogram(freq)
+    elif response not in 'yn':
+        print('Input character not recognized')
+
     end = time.time()
-    print('Measured elapsed time:', end-start, 's')
+    print('Measured elapsed time:', round(end-start, 2), 'sec')
